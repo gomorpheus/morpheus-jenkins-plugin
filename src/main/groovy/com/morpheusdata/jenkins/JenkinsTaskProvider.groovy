@@ -5,6 +5,7 @@ import com.morpheusdata.core.ExecutableTaskInterface
 import com.morpheusdata.core.MorpheusContext
 import com.morpheusdata.core.Plugin
 import com.morpheusdata.core.TaskProvider
+import com.morpheusdata.model.Icon
 import com.morpheusdata.model.OptionType
 import com.morpheusdata.model.TaskType
 
@@ -138,5 +139,15 @@ class JenkinsTaskProvider implements TaskProvider {
     @Override
     String getName() {
         return 'Jenkins Trigger Build'
+    }
+
+    /**
+     * Returns the Task Type Icon for display when a user is browsing tasks
+     * @since 0.12.7
+     * @return Icon representation of assets stored in the src/assets of the project.
+     */
+    @Override
+    Icon getIcon() {
+        return new Icon(path:"jenkins-black.svg", darkPath: "jenkins-white.svg")
     }
 }
