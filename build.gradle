@@ -33,7 +33,7 @@ configurations {
 }
 
 dependencies {
-	provided "com.morpheusdata:morpheus-plugin-api:0.13.4-SNAPSHOT"
+	provided "com.morpheusdata:morpheus-plugin-api:0.12.7"
 	provided "org.codehaus.groovy:groovy-all:$groovyVersion"
 	implementation 'commons-beanutils:commons-beanutils:1.9.3'
 	implementation "org.slf4j:slf4j-api:$slf4jVersion"
@@ -72,9 +72,9 @@ jar {
 				'Morpheus-Logo': 'assets/jenkins-black.svg',
 				'Morpheus-Logo-Dark': 'assets/jenkins-white.svg',
 				'Morpheus-Color': '#ffffff',
-				'Morpheus-Labels': 'Plugin, Networking, Network',
+				'Morpheus-Labels': 'Plugin, Build',
 				'Morpheus-Repo': 'https://github.com/gomorpheus/morpheus-plugin-core',
-				'Morpheus-Min-Appliance-Version': "5.5.2"
+				'Morpheus-Min-Appliance-Version': "5.4.12"
 		)
 	}
 }
