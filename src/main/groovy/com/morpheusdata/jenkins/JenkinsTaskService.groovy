@@ -9,6 +9,8 @@ import com.morpheusdata.model.Instance
 import com.morpheusdata.model.Task
 import com.morpheusdata.model.TaskConfig
 import com.morpheusdata.model.TaskResult
+import groovy.json.JsonSlurper
+import groovy.text.SimpleTemplateEngine
 import groovy.util.logging.Slf4j
 
 @Slf4j
@@ -116,15 +118,19 @@ class JenkinsTaskService extends AbstractTaskService {
         String jenkinsToken =  task.taskOptions.find { it.optionType.code == 'jenkins.serviceToken' }?.value
         String jobName =  task.taskOptions.find { it.optionType.code == 'jenkins.jobName' }?.value
         String jenkinsParameters =  task.taskOptions.find { it.optionType.code == 'jenkins.buildParameters' }?.value
+
         HttpApiClient client = new HttpApiClient()
         try {
             String path = "/job/${jobName}/${jenkinsParameters ? 'buildWithParameters' : 'build'}"
             HttpApiClient.RequestOptions requestOptions = new HttpApiClient.RequestOptions()
             requestOptions.headers = ['Accept':'application/json']
-            if(jenkinsParameters) {
-
-                requestOptions.body = jenkinsParameters
+            def parametersMap = new JsonSlurper().parseText(jenkinsParameters)
+            requestOptions.queryParams = [:]
+            parametersMap?.each { key,value ->
+                requestOptions.queryParams.put(key.toString(),value?.toString())
             }
+
+
             def results = client.callApi(jenkinsUrl,path,jenkinsUser,jenkinsToken,requestOptions,'POST')
             if(results.success) {
                 String queueId = results.content
@@ -194,7 +200,6 @@ class JenkinsTaskService extends AbstractTaskService {
         } finally {
             client.shutdownClient()
         }
-
-
     }
+
 }

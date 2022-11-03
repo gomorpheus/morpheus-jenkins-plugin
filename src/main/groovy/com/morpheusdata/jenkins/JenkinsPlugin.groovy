@@ -20,6 +20,6 @@ class JenkinsPlugin extends Plugin {
 	 */
 	@Override
 	void onDestroy() {
-		//nothing to do for now
+		morpheus.task.disableTask('jenkins')
 	}
 }
