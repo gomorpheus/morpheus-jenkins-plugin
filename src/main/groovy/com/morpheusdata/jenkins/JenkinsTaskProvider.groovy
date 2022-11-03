@@ -92,11 +92,11 @@ class JenkinsTaskProvider implements TaskProvider {
     @Override
     List<OptionType> getOptionTypes() {
         return [
-                new OptionType(code: 'jenkins.serviceUrl', name: 'Service URL', inputType: OptionType.InputType.TEXT, fieldName: 'serviceUrl', fieldLabel: 'API Url', placeHolder: 'https://x.x.x.x/', helpBlock: 'Warning! Using HTTP URLS are insecure and not recommended.', displayOrder: 0),
-                new OptionType(code: 'jenkins.serviceUser', name: 'Service Username', inputType: OptionType.InputType.TEXT, fieldName: 'serviceUsername', fieldLabel: 'Username', displayOrder: 2,localCredential: true),
-                new OptionType(code: 'jenkins.serviceToken', name: 'Service Token', inputType: OptionType.InputType.PASSWORD, fieldName: 'servicePassword', fieldLabel: 'Token', displayOrder: 3,localCredential: true),
+                new OptionType(code: 'jenkins.serviceUrl', name: 'Service URL', inputType: OptionType.InputType.TEXT, fieldName: 'serviceUrl', fieldLabel: 'API Url', displayOrder: 0),
+                new OptionType(code: 'jenkins.serviceUser', name: 'Service Username', inputType: OptionType.InputType.TEXT, fieldName: 'serviceUsername', fieldLabel: 'Username', displayOrder: 2),
+                new OptionType(code: 'jenkins.serviceToken', name: 'Service Token', inputType: OptionType.InputType.PASSWORD, fieldName: 'servicePassword', fieldLabel: 'Token', displayOrder: 3),
                 new OptionType(code: 'jenkins.jobName', name: 'Job Name', inputType: OptionType.InputType.TEXT, fieldName: 'jobName', fieldLabel: 'Job Name', displayOrder: 4),
-                new OptionType(code: 'jenkins.buildParameters', name: 'Build Parameters', inputType: OptionType.InputType.CODE_EDITOR, format: 'json', fieldName: 'buildParameters', fieldLabel: 'Build Parameters', displayOrder: 5),
+                new OptionType(code: 'jenkins.buildParameters', name: 'Build Parameters', inputType: OptionType.InputType.CODE_EDITOR, fieldName: 'buildParameters', fieldLabel: 'Build Parameters', displayOrder: 5),
 
         ]
     }
