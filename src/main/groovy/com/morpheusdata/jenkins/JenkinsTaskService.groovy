@@ -124,7 +124,10 @@ class JenkinsTaskService extends AbstractTaskService {
             String path = "/job/${jobName}/${jenkinsParameters ? 'buildWithParameters' : 'build'}"
             HttpApiClient.RequestOptions requestOptions = new HttpApiClient.RequestOptions()
             requestOptions.headers = ['Accept':'application/json']
-            def parametersMap = new JsonSlurper().parseText(jenkinsParameters)
+            def parametersMap = [:]
+            if (jenkinsParameters) {
+              parametersMap = new JsonSlurper().parseText(jenkinsParameters)
+            }
             requestOptions.queryParams = [:]
             parametersMap?.each { key,value ->
                 requestOptions.queryParams.put(key.toString(),value?.toString())
