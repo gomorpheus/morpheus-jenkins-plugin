@@ -7,7 +7,10 @@ import com.morpheusdata.core.Plugin
 import com.morpheusdata.core.TaskProvider
 import com.morpheusdata.model.Icon
 import com.morpheusdata.model.OptionType
+import com.morpheusdata.model.Task
+import com.morpheusdata.model.TaskResult
 import com.morpheusdata.model.TaskType
+import com.morpheusdata.model.Workload
 
 class JenkinsTaskProvider implements TaskProvider {
     MorpheusContext morpheusContext
@@ -150,4 +153,12 @@ class JenkinsTaskProvider implements TaskProvider {
     Icon getIcon() {
         return new Icon(path:"jenkins-black.svg", darkPath: "jenkins-white.svg")
     }
+
+
+	/**
+	 * empty implementation until fix in core to provide default implementation
+	 */
+	TaskResult executeContainerTask(Workload workload, Task task, Map opts) {
+		return null;
+	}
 }
